@@ -17,17 +17,7 @@ class UserFactory extends Factory
      */
     protected static ?string $password;
 
-    /**
-     * Ensure the specific seeded email is marked as admin.
-     */
-    public function configure(): static
-    {
-        return $this->afterMaking(function (User $user): void {
-            if ($user->email === 'mattisbbn@gmail.com') {
-                $user->is_admin = true;
-            }
-        });
-    }
+
 
     /**
      * Define the model's default state.
@@ -50,7 +40,7 @@ class UserFactory extends Factory
      */
     public function unverified(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'email_verified_at' => null,
         ]);
     }

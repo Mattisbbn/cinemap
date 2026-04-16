@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\UpdateLocationVotes;
 use App\Models\Film;
 use App\Models\Location;
 use Illuminate\Http\Request;
@@ -118,6 +119,8 @@ class LocationController extends Controller
             'user_id' => Auth::id(),
         ]);
 
-        return redirect()->back()->with('success', 'Merci pour votre vote !');
+        UpdateLocationVotes::dispatch($location->id);
+
+        return redirect()->back()->with('success', 'Vote pris en compte');
     }
 }

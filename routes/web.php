@@ -18,8 +18,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('locations', LocationController::class)->except(['index', 'show'])->middleware('admin_or_owner_location');
-Route::resource('locations', LocationController::class)->only(['index', 'show']);
+Route::resource('locations', LocationController::class)->except(['index', 'show', 'create'])->middleware('admin_or_owner_location');
+Route::resource('locations', LocationController::class)->only(['index', 'show', 'create']);
 
 Route::resource('films', FilmController::class)->except(['index', 'show'])->middleware('admin');
 Route::resource('films', FilmController::class)->only(['index', 'show']);
