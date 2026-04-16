@@ -33,7 +33,7 @@ class FilmController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'release_year' => 'required|integer|min:1000|max:' . date('Y'),
+            'release_year' => 'required|integer|min:1000|max:'.date('Y'),
         ]);
 
         Film::create([
@@ -71,7 +71,7 @@ class FilmController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'release_year' => 'required|integer|min:1000|max:' . date('Y'),
+            'release_year' => 'required|integer|min:1000|max:'.date('Y'),
         ]);
 
         $film->update([
@@ -88,6 +88,7 @@ class FilmController extends Controller
     public function destroy(Film $film)
     {
         $film->delete();
+
         return redirect()->route('films.index')->with('success', 'Film supprimé avec succès');
     }
 }

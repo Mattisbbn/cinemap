@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class LocationVote extends Model
 {
-    //
+    protected $fillable = ['location_id', 'user_id'];
 }

@@ -26,7 +26,20 @@
                             <p class="text-gray-600">Ville: {{ $location->city }}</p>
                             <p class="text-gray-600">Pays: {{ $location->country }}</p>
                             <p class="text-gray-600">Description: {{ $location->description }}</p>
+                            <p class="text-gray-600 mb-3">Votes : {{ $location->upvotes_count }}</p>
+                            @auth
+                                <form action="{{ route('locations.upvote') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="location_id" value="{{ $location->id }}">
+                                    <x-secondary-button type="submit">
+                                        Upvote
+                                    </x-secondary-button>
+                                </form>
+                            @endauth
                         </div>
+
+
+
                     </a>
                 </div>
             @endforeach

@@ -9,11 +9,13 @@
                     <x-primary-button>Modifier la localisation</x-primary-button>
                 </a>
 
+
                 <form action="{{ route('locations.destroy', $location->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <x-danger-button>Supprimer la localisation</x-danger-button>
                 </form>
+
 
             </div>
 
@@ -28,6 +30,7 @@
         <p class="text-gray-600 mb-2">Pays : {{ $location->country }}</p>
         <p class="text-gray-600 mb-2">Description : {{ $location->description }}</p>
         <p class="text-gray-600 mb-2">Créé par : {{ $location->user->name }}</p>
+        <p class="text-gray-600 mb-2">Votes : {{ $location->upvotes_count }}</p>
     </section>
 
 </x-app-layout>

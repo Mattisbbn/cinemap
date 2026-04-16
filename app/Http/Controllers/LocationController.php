@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Location;
 use App\Models\Film;
+use App\Models\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,7 +28,8 @@ class LocationController extends Controller
             'films' => Film::all(),
         ]);
     }
-// film name city country desctription
+
+    // film name city country desctription
     /**
      * Store a newly created resource in storage.
      */
@@ -46,6 +47,7 @@ class LocationController extends Controller
         $payload['user_id'] = Auth::id();
 
         Location::create($payload);
+
         return redirect()->route('locations.index');
     }
 
@@ -54,6 +56,8 @@ class LocationController extends Controller
      */
     public function show(Location $location)
     {
+        $location->load(['film', 'user'])->loadCount('location_votes');
+
         return view('location.show', [
             'location' => $location,
         ]);
@@ -84,6 +88,7 @@ class LocationController extends Controller
         ]);
 
         $location->update($request->all());
+
         return redirect()->route('locations.index')->with('success', 'Localisation modifiée avec succès');
     }
 
@@ -93,6 +98,26 @@ class LocationController extends Controller
     public function destroy(Location $location)
     {
         $location->delete();
+
         return redirect()->route('locations.index')->with('success', 'Localisation supprimée avec succès');
+    }
+
+    public function upvote(Request $request)
+    {
+        $request->validate([
+            'location_id' => 'required|exists:locations,id',
+        ]);
+
+        $location = Location::findOrFail($request->location_id);
+
+        if ($location->location_votes()->where('user_id', Auth::id())->exists()) {
+            return redirect()->back()->with('error', 'Vous avez déjà voté pour cette localisation.');
+        }
+
+        $location->location_votes()->create([
+            'user_id' => Auth::id(),
+        ]);
+
+        return redirect()->back()->with('success', 'Merci pour votre vote !');
     }
 }
