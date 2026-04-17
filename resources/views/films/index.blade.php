@@ -4,11 +4,16 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight me-6">
                 Films
             </h2>
-            <div>
-                <a href="{{ route('films.create') }}">
-                    <x-primary-button>Créer un film</x-primary-button>
-                </a>
-            </div>
+
+            @auth
+                @if (Auth::user()->is_admin)
+                    <div>
+                        <a href="{{ route('films.create') }}">
+                            <x-primary-button>Créer un film</x-primary-button>
+                        </a>
+                    </div>
+                @endif
+            @endauth
 
         </div>
 

@@ -33,7 +33,7 @@ class FilmController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'release_year' => 'required|integer|min:1000|max:'.date('Y'),
+            'release_year' => 'required|integer|min:1000|max:' . date('Y'),
         ]);
 
         Film::create([
@@ -71,7 +71,7 @@ class FilmController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'release_year' => 'required|integer|min:1000|max:'.date('Y'),
+            'release_year' => 'required|integer|min:1000|max:' . date('Y'),
         ]);
 
         $film->update([

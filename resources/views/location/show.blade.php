@@ -4,20 +4,25 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight me-6">
                 Localisation : {{ $location->name }}
             </h2>
-            <div class="flex gap-4">
-                <a href="{{ route('locations.edit', $location->id) }}">
-                    <x-primary-button>Modifier la localisation</x-primary-button>
-                </a>
+            @auth
+                @if ($location->user_id === Auth::id() || Auth::user()->is_admin)
+                    <div class="flex gap-4">
+                        <a href="{{ route('locations.edit', $location->id) }}">
+                            <x-primary-button>Modifier la localisation</x-primary-button>
+                        </a>
 
 
-                <form action="{{ route('locations.destroy', $location->id) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <x-danger-button>Supprimer la localisation</x-danger-button>
-                </form>
+                        <form action="{{ route('locations.destroy', $location->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <x-danger-button>Supprimer la localisation</x-danger-button>
+                        </form>
 
 
-            </div>
+                    </div>
+                @endif
+
+            @endauth
 
         </div>
 
