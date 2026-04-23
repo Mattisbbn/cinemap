@@ -24,6 +24,7 @@ class User extends Authenticatable implements JWTSubject
         'password',
         'github_id',
         'github_token',
+        'id',
         'github_refresh_token',
     ];
 
