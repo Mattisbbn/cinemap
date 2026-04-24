@@ -2,16 +2,16 @@
 
 namespace App\Mcp\Tools;
 
+use App\Models\Film;
 use Illuminate\Contracts\JsonSchema\JsonSchema;
 use Laravel\Mcp\Request;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\Server\Attributes\Description;
 use Laravel\Mcp\Server\Attributes\Name;
 use Laravel\Mcp\Server\Tool;
-use App\Models\Film;
 
 #[Name('make_film')]
-#[Description("Cree un film avec un titre et une annee de sortie.")]
+#[Description('Cree un film avec un titre et une annee de sortie.')]
 class Makefilm extends Tool
 {
     /**
@@ -21,7 +21,7 @@ class Makefilm extends Tool
     {
         $validated = $request->validate([
             'title' => ['required', 'string', 'min:1', 'max:255'],
-            'release_year' => ['required', 'integer', 'min:1888', 'max:' . ((int) date('Y') + 1)],
+            'release_year' => ['required', 'integer', 'min:1888', 'max:'.((int) date('Y') + 1)],
         ]);
 
         $film = Film::create([

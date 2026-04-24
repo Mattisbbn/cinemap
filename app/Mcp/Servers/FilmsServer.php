@@ -3,8 +3,8 @@
 namespace App\Mcp\Servers;
 
 use App\Mcp\Tools\GetLocationsForFilm;
-use App\Mcp\Tools\Makefilm;
 use App\Mcp\Tools\ListFilms;
+use App\Mcp\Tools\Makefilm;
 use App\Mcp\Tools\MakeLocation;
 use Laravel\Mcp\Server;
 use Laravel\Mcp\Server\Attributes\Instructions;
@@ -20,7 +20,7 @@ class FilmsServer extends Server
         ListFilms::class,
         GetLocationsForFilm::class,
         Makefilm::class,
-        MakeLocation::class
+        MakeLocation::class,
     ];
 
     protected array $resources = [

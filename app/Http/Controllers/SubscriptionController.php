@@ -6,14 +6,12 @@ use Illuminate\Http\Request;
 
 class SubscriptionController extends Controller
 {
-
     public function index(Request $request)
     {
         return view('subscription', [
-            'intent' => $request->user()->createSetupIntent()
+            'intent' => $request->user()->createSetupIntent(),
         ]);
     }
-
 
     public function subscribe(Request $request)
     {
@@ -24,9 +22,6 @@ class SubscriptionController extends Controller
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 400);
         }
-
-
-
 
         return response()->json(['message' => 'Subscription successful!']);
     }

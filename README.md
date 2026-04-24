@@ -197,6 +197,9 @@ Outils disponibles:
 
 - list_films
 - get_locations_for_film
+- make_film
+- make-location
+
 
 ## Qualite de code
 

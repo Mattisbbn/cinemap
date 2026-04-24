@@ -1,13 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\SubscriptionController;
-
-
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
@@ -33,4 +31,4 @@ Route::get('/auth/github/callback', [SocialiteController::class, 'callback']);
 Route::get('/subscription', [SubscriptionController::class, 'index'])->name('subscription.index')->middleware('auth');
 Route::post('/subscribe', [SubscriptionController::class, 'subscribe'])->name('subscription.subscribe')->middleware('auth');
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

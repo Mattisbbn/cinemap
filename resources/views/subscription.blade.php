@@ -91,7 +91,6 @@
                 document.getElementById('card-errors').textContent = error.message;
                 cardButton.disabled = false;
             } else {
-                // Succès : on met l'ID du PaymentMethod dans le champ caché et on soumet
                 document.getElementById('payment_method_id').value = setupIntent.payment_method;
                 document.getElementById('subscription-form').submit();
             }

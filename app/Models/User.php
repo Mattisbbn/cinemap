@@ -16,7 +16,7 @@ use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 class User extends Authenticatable implements JWTSubject
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable, Billable;
+    use Billable, HasFactory, Notifiable;
 
     protected $fillable = [
         'name',

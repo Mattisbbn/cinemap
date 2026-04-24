@@ -3,9 +3,7 @@
 namespace App\Mcp\Tools;
 
 use App\Models\Location;
-
 use Illuminate\Contracts\JsonSchema\JsonSchema;
-
 use Laravel\Mcp\Request;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\Server\Attributes\Description;
@@ -34,7 +32,6 @@ class MakeLocation extends Tool
         if (! is_string($name) || trim($name) === '') {
             return Response::error('Either name or location_name must be provided.');
         }
-
 
         $location = Location::create([
             'film_id' => $validated['film_id'],
