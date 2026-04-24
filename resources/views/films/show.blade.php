@@ -30,4 +30,24 @@
 
     </section>
 
+
+    @if ($film->locations->isNotEmpty())
+        <div class="max-w-7xl mx-auto sm:p-6 lg:p-8 bg-white shadow rounded-t-lg mt-6">
+            <h2 class="text-xl">Localisations :</h2>
+        </div>
+    @else
+        <div class="max-w-7xl mx-auto sm:p-6 lg:p-8 bg-white shadow rounded-lg mt-6">
+            <p class="text-gray-600">Aucune localisation associée à ce film.</p>
+        </div>
+    @endif
+
+    @foreach ($film->locations as $location)
+        <section class="max-w-7xl mx-auto sm:p-6 lg:p-8 bg-white shadow rounded-b-lg">
+            <h2 class="text-xl font-bold mb-4">{{ $location->name ?? 'Lieu de tournage' }}</h2>
+            <p class="text-gray-600 mb-2">Ville : {{ $location->city }}</p>
+            <p class="text-gray-600 mb-2">Pays : {{ $location->country }}</p>
+            <p class="text-gray-600 mb-2">Description : {{ $location->description }}</p>
+        </section>
+    @endforeach
+
 </x-app-layout>

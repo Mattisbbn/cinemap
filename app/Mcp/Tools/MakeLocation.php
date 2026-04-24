@@ -24,8 +24,6 @@ class MakeLocation extends Tool
         $validated = $request->validate([
             'film_id' => ['required', 'integer', 'exists:films,id'],
             'name' => ['nullable', 'string', 'max:255'],
-            'name' => ['nullable', 'string', 'max:255'],
-            'location_name' => ['nullable', 'string', 'max:255'],
             'city' => ['required', 'string', 'max:255'],
             'country' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
@@ -63,7 +61,6 @@ class MakeLocation extends Tool
         return [
             'film_id' => $schema->integer()->required()->description('ID du film.'),
             'name' => $schema->string()->description('Nom du lieu de tournage.'),
-            'location_name' => $schema->string()->description('Nom de la location.'),
             'city' => $schema->string()->required()->description('Ville.'),
             'country' => $schema->string()->required()->description('Pays.'),
             'description' => $schema->string()->required()->description('Description du lieu.'),
